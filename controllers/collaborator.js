@@ -1,33 +1,33 @@
-const Collaborator = require('../models/Collaborator');
+const collaborator = require('../models/collaborator');
 
 async function createCollaborator(req, res) {
   const data = req.body;
-  const collaborator = await Collaborator.create(data);
-  res.json({ collaborator });
+  const newCollaborator = await collaborator.create(data);
+  res.json({ newCollaborator });
 }
 
 async function getAllCollaborators(req, res) {
-  const collaborators = await Collaborator.find();
+  const collaborators = await collaborator.find();
   res.json(collaborators);
 }
 
 async function getCollaboratorById(req, res) {
   const id = req.params.id;
-  const collaborator = await Collaborator.findById(id);
-  res.json({ collaborator });
+  const foundCollaborator = await collaborator.findById(id);
+  res.json({ foundCollaborator });
 }
 
 async function editCollaboratorById(req, res) {
   const id = req.params.id;
   const data = req.body;
-  const collaborator = await Collaborator.findByIdAndUpdate(id, data);
-  res.json({ collaborator });
+  const updatedCollaborator = await collaborator.findByIdAndUpdate(id, data);
+  res.json({ updatedCollaborator });
 }
 
 async function deleteCollaboratorById(req, res) {
   const id = req.params.id;
-  const collaborator = await Collaborator.findByIdAndDelete(id);
-  res.json({ collaborator });
+  const deletedCollaborator = await collaborator.findByIdAndDelete(id);
+  res.json({ deletedCollaborator });
 }
 
 module.exports = { createCollaborator, getAllCollaborators, getCollaboratorById, editCollaboratorById, deleteCollaboratorById };
